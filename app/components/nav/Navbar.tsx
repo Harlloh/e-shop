@@ -23,7 +23,7 @@ export default async function Navbar() {
                 href="/"
                 className={`${redressFont.className} font-bold text-2xl`}
               >
-                JPL GOODS
+                E-SHOP
               </Link>
             </span>
             <div className="hidden md:block">Search</div>

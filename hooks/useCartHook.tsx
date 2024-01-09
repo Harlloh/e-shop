@@ -10,6 +10,8 @@ import { toast } from "react-hot-toast";
 
 //create the context and pass the value you want to be accessible to all component
 type cartContextType = {
+  paymentIntent: string | null;
+
   cartTotalQty: number;
   cartTotalAmount: number;
   cartProducts: cartProductType[] | null;
@@ -18,6 +20,7 @@ type cartContextType = {
   handleCartQtyIncrease: (product: cartProductType) => void;
   handleCartQtyDecrease: (product: cartProductType) => void;
   handleClearCart: () => void;
+  handleSetPaymentIntent: (value: string | null) => void;
 };
 export const cartContext = createContext<cartContextType | null>(null);
 
@@ -32,14 +35,17 @@ export const CartContextProvider = (props: PropsType) => {
   const [cartProducts, setCartProducts] = useState<cartProductType[] | null>(
     null
   );
-
-  console.log(cartTotalAmount, cartTotalQty);
+  const [paymentIntent, setPaymentIntent] = useState<string | null>(null);
 
   useEffect(() => {
     const cartItems: any = localStorage.getItem("cartItems");
     const cProducts: cartProductType[] | null = JSON.parse(cartItems);
+    const eShopPaymentIntent: any = localStorage.getItem("eShopPaymentIntent");
+
+    const paymentIntent: string | null = JSON.parse(eShopPaymentIntent);
 
     setCartProducts(cProducts);
+    setPaymentIntent(paymentIntent);
   }, []);
 
   useEffect(() => {
@@ -142,15 +148,25 @@ export const CartContextProvider = (props: PropsType) => {
     localStorage.removeItem("cartItems");
   }, [cartProducts]);
 
+  const handleSetPaymentIntent = useCallback(
+    (value: string | null) => {
+      setPaymentIntent(value);
+      localStorage.setItem("eShopPaymentIntent", JSON.stringify(value));
+    },
+    [paymentIntent]
+  );
+
   const value = {
     cartTotalQty,
     cartTotalAmount,
     cartProducts,
+    paymentIntent,
     handleAddProductToCart,
     handleRemoveProductFromCart,
     handleCartQtyIncrease,
     handleCartQtyDecrease,
     handleClearCart,
+    handleSetPaymentIntent,
   };
   return <cartContext.Provider value={value} {...props} />;
 };

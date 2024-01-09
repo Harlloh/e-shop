@@ -8,7 +8,7 @@ import { products } from "./utils/Product";
 export default function Home() {
   return (
     <>
-      <Slides />
+      {/* <Slides /> */}
       <div className="p-8">
         <Container>
           <div>
