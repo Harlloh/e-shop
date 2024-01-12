@@ -53,8 +53,6 @@ const ProductDetails: React.FC<ProductParams> = ({ products }) => {
     price: products.price,
   });
 
-  console.log(cartProducts);
-
   const handleColorSelect = useCallback(
     (value: selectedImg) => {
       setCartProduct((prev) => {

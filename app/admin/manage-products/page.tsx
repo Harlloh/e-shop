@@ -3,6 +3,7 @@ import ManageProductClient from "./ManageProductClient";
 import getProducts from "@/actions/getProducts";
 import { getCurrentUser } from "@/actions/getCurrentUser";
 import NullData from "@/app/components/NullData";
+import Container from "@/app/components/Container";
 
 async function ManageProducts() {
   const products = await getProducts({ category: null });
@@ -10,9 +11,13 @@ async function ManageProducts() {
   if (!currentUser || currentUser.role !== "ADMIN") {
     return <NullData title="Oops access denied" />;
   }
+  console.log(products, ">>>>>>>>>>>>>>>");
+  debugger;
   return (
     <div>
-      <ManageProductClient products={products} />
+      <Container>
+        <ManageProductClient products={products} />
+      </Container>
     </div>
   );
 }
