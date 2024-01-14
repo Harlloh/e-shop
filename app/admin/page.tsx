@@ -14,10 +14,12 @@ async function page() {
 
   const graphData = await getGraphData();
 
+  const usersArray = users || [];
+
   return (
     <div className="pt-8">
       <Container>
-        <Summary products={products} orders={orders} users={users} />
+        <Summary products={products} orders={orders} users={usersArray} />
         <div className="mt-4 mx-auto max-w-[1150px]">
           <BarGraph data={graphData} />
         </div>
