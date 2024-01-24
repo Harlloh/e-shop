@@ -16,7 +16,7 @@ export default async function Home({ searchParams }: HomeProps) {
   const products = await getProducts(searchParams);
 
   //an algorithm to get the products randomly
-  if ((products.length = 0)) {
+  if ((products.length === 0)) {
     return (
       <NullData title="Oops! No product found. Click 'All' to clear filters" />
     );
