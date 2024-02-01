@@ -14,7 +14,10 @@ const calculateOrderAmount = (items: cartProductType[]) => {
 
     return (acc += itemTotal);
   }, 0);
-  return totalPrice;
+
+  const price:any = totalPrice.toFixed(2)
+
+  return price;
 };
 
 export async function POST(request: Request) {

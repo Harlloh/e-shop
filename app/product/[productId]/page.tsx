@@ -18,6 +18,7 @@ async function Product({ params }: { params: IParams }) {
   }
 
   const currentUser = await getCurrentUser();
+  debugger;
   return (
     <Container>
       <div>
